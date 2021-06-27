@@ -1,0 +1,10 @@
+.hero{
+    position: absolute;
+    width: 100%;
+    justify-content: center;
+    padding-top: 10px;
+}
+.ui.segment{
+    position: static;
+    background-color: #F9F9F9;
+}

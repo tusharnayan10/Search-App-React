@@ -1,29 +1,34 @@
 import React from 'react'
 import unsplansh from '../API/unsplansh';
-import SearchBar from '../SearchBar';
-
+import ImageList from './ImageList';
+import SearchBar from './SearchBar';
 
 class App extends React.Component {
-  state = {image: []};
+  state = { image: [] };
 
-onSearchSubmit = async (term)=> {
-    const response = await unsplansh.get('search/photos',{
-      params: { query: term },
-    });
-    
-    // console.log(response.data.results);
-    this.setState({image: response.data.results});
-    // console.log(response);
-  }
+ 
+onSearchSubmit = async (term) => {
+  const response = await unsplansh.get('search/photos', {
+    params: { query: term },
+  });
 
-  render(){
-    return (
-      <div className="App ui container" style={{marginTop: '12px'}}>
-        <SearchBar onSubmit={this.onSearchSubmit} /> 
-        <h3>Found {this.state.image.length} Images </h3>   
-      </div>
-    );
-  }
+  // console.log(response.data.results);
+  this.setState({ image: response.data.results });
+  // console.log(response);
+}
+
+
+render(){
+  console.log(this.state.image.length);
+
+  return (
+    <div className="App ui container" style={{ marginTop: '12px' }}>
+      <SearchBar onSubmit={this.onSearchSubmit} />
+      <h3>Found {this.state.image.length} Images </h3>
+      <ImageList image={this.state.image} />
+    </div>
+  );
+}
 }
 
 export default App;
